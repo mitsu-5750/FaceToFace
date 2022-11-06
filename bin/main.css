@@ -1,0 +1,14 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 16px;
+}
+
+#CARD_IMG {
+	width: 30rem;
+	height: 50rem;
+	object-fit: cover;
+}

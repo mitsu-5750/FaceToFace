@@ -10,33 +10,51 @@
 </head>
 
 <body>
-	<div>
-		<div id="CARD">
-			<img src="" id="CARD_IMG">
+	<main>
+		<div id="RESERVE">
+			<img src="bin/logo.png" id="LOGO">
+
+			<div id="SETTING">
+				<label for="PLAYER_LIMIT">
+					<p>プレイヤー人数</p>
+				</label>
+				<input type="number" id="PLAYER_LIMIT">
+
+				<label for="USE_CARD_LIMIT">
+					<p>使用するカードの枚数</p>
+					<p id="READ_IMAGE_LIMIT">※画像読み込み中</p>
+				</label>
+				<input type="number" id="USE_CARD_LIMIT">
+
+				<label for="TARN_LIMIT">
+					<p>ターン回数</p>
+				</label>
+				<input type="number" id="TARN_LIMIT">
+			</div>
+
+			<button id="GAME_START_BTN">ゲームスタート</button>
 		</div>
 
-	</div>
 
-	<!-- <div>
-		<label for="PLAYER_LIMIT">
-			<p>プレイヤー人数</p>
-		</label>
-		<input type="text" id="PLAYER_LIMIT">
+		<div id="GAME">
+			<p id="PLAYER_TURN">プレイヤー1のターン</p>
+			<div id="CARD">
+				<img src="bin/card.jpg" id="CARD_BACK">
+				<img src="" id="CARD_IMG">
+			</div>
 
-		<label for="USE_CARD_LIMIT">
-			<p>使用するカードの枚数</p>
-		</label>
-
-		<input type="text" id="USE_CARD_LIMIT">
+			<div id="OPERATION"></div>
+		</div>
 
 
-		
+		<div id="RESULT">
+			<p id="RESULT_TITLE">結果発表</p>
 
+			<div id="RESULT_DATA"></div>
 
-		<button id="GAME_START_BTN">ゲームスタート</button>
-	</div> -->
-
-	<p id="READ_IMAGE_LIMIT">使用できる画像の枚数:読み込み中</p>
+			<button onclick="location.reload()">もう一度遊ぶ</button>
+		</div>
+	</main>
 	<script src="bin/main.js"></script>
 </body>
 

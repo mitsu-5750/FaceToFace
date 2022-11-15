@@ -1,14 +1,176 @@
+html {
+	font-size: 1.1vw;
+}
+
+@media (min-width: 55vh) {
+	html {
+		font-size: 0.62vh;
+	}
+}
+
 * {
 	margin: 0;
 	padding: 0;
+	font-family: "游ゴシック", sans-serif;
+	font-size: 4rem;
 }
 
-html {
-	font-size: 16px;
+body {
+	background-color: #333;
+}
+
+main {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 90rem;
+	height: 160rem;
+	margin: auto;
+}
+
+button, a {
+	background-color: rgb(209 123 35);
+	border: none;
+	font-weight: bold;
+	color: #111;
+	padding: 0.5rem;
+	border-radius: 2rem;
+	display: inline-block;
+	margin-top: 5rem;
+	text-decoration: none;
+}
+
+input {
+	border-radius: 2rem;
+	border: none;
+	padding-left: 2rem;
+}
+
+label {
+	margin-top: 5rem;
+	display: block;
+}
+
+/*
+RESERVE
+*/
+
+#RESERVE {
+	transition: 0.4s;
+}
+
+#LOGO {
+	width: 100%;
+	margin-top: 5rem;
+}
+
+#SETTING {
+	background-color: rgb(99, 62, 124);
+	color: #fff;
+	border-radius: 2rem;
+	padding: 2rem;
+	padding-bottom: 7rem;
+	margin-top: 5rem;
+	box-shadow: rgba(0, 0, 0, 0.5) 0 0 5rem;
+}
+
+#READ_IMAGE_LIMIT {
+	font-size: 3rem;
+}
+
+#GAME_START_BTN {
+	margin: 0 auto;
+	margin-top: 10rem;
+	display: block;
+}
+
+/*
+GAME
+*/
+
+#GAME {
+	display: none;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+#CARD {
+	width: 80rem;
+	height: 100rem;
+	position: relative;
+	transition: 0.2s;
+	transform: rotateY(0deg);
+	margin: 0 auto;
+}
+
+#CARD>img {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 2rem;
+	box-shadow: 0 0 1rem gray;
+}
+
+#CARD_BACK {
+	object-fit: fill;
+	z-index: 1;
 }
 
 #CARD_IMG {
-	width: 30rem;
-	height: 50rem;
 	object-fit: cover;
+	z-index: 0;
+}
+
+#PLAYER_TURN {
+	text-align: center;
+	font-size: 5rem;
+	padding: 0.5rem;
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 1rem;
+}
+
+#OPERATION {
+	margin: 0 auto;
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-around;
+}
+
+/* 
+RESULT
+*/
+
+#RESULT {
+	display: none;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+#RESULT_TITLE {
+	color: #fff;
+	font-size: 10rem;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 5rem;
+}
+
+#RESULT_DATA {
+	margin-top: 5rem;
+	background-color: rgb(99, 62, 124);
+	color: #fff;
+	border-radius: 2rem;
+	padding: 2rem;
+	margin-top: 5rem;
+	box-shadow: rgba(0, 0, 0, 0.5) 0 0 5rem;
+}
+
+.players {
+	margin: 2rem 0;
+	opacity: 0;
 }

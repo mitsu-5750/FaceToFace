@@ -1,3 +1,4 @@
+'use strict';
 let constants, util;
 
 let use_face_list = [];
@@ -25,6 +26,7 @@ async function init() {
 	if (!option_data) {
 		return;
 	}
+
 	document.getElementById('PLAYER_LIMIT').value = option_data['player_limit'];
 	document.getElementById('USE_CARD_LIMIT').value = option_data['use_card_limit'];
 	document.getElementById('TARN_LIMIT').value = option_data['tarn_limit'];
@@ -67,6 +69,7 @@ async function game_start(face_list, limit) {
 		'tarn_limit': document.getElementById('TARN_LIMIT').value,
 	}
 	util.setStorage(constants.STORAGE_KEY, option_obj);
+
 
 	turn_limit = document.getElementById('TARN_LIMIT').value;
 

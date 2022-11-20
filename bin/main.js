@@ -1,5 +1,4 @@
 'use strict';
-let constants, util;
 
 let use_face_list = [];
 let player_scores = [];
@@ -8,10 +7,7 @@ let turn_player = 0;
 
 const OPERATION = document.getElementById('OPERATION');
 
-async function init() {
-	await import('./constants.js').then((value) => { constants = value });
-	await import('./util.js').then((value) => { util = value });
-
+function init() {
 	let face_list;
 	find_face_list().then((value) => {
 		face_list = value;
@@ -22,7 +18,7 @@ async function init() {
 		game_start(face_list, document.getElementById('USE_CARD_LIMIT').value);
 	});
 
-	let option_data = util.getStorage(constants.STORAGE_KEY);
+	let option_data = Util.get_storage(Constants.STORAGE_KEY);
 	if (!option_data) {
 		return;
 	}
@@ -38,16 +34,24 @@ async function find_face_list() {
 
 	let count = 0;
 	while (true) {
-		let img_src = `face_list/${count}.jpg`;
+		let img_src = `${Constants.FILE_DIR}/${count}.jpg`;
 
 		let responce = await fetch(img_src);
-		if (responce.status == 200) {
-			face_list.push(img_src);
-			count++;
-			continue;
+
+		if (responce.status != 200) {
+			return face_list;
 		}
 
-		return face_list;
+		let text;
+		await responce.text().then((v) => text = v);
+
+		if (text.indexOf('html') != -1) {
+			return face_list;
+		}
+
+		face_list.push(img_src);
+		count++;
+		continue;
 	}
 }
 
@@ -68,14 +72,14 @@ async function game_start(face_list, limit) {
 		'use_card_limit': document.getElementById('USE_CARD_LIMIT').value,
 		'tarn_limit': document.getElementById('TARN_LIMIT').value,
 	}
-	util.setStorage(constants.STORAGE_KEY, option_obj);
+	Util.set_storage(Constants.STORAGE_KEY, option_obj);
 
 
 	turn_limit = document.getElementById('TARN_LIMIT').value;
 
 	document.getElementById('RESERVE').style.display = 'none';
 	document.getElementById('GAME').style.display = 'block';
-	await util.sleep(10);
+	await Util.sleep(10);
 	document.getElementById('GAME').style.opacity = 1;
 
 	reserve_turn();
@@ -109,7 +113,7 @@ function reserve_turn() {
 	});
 }
 
-function turn() {
+async function turn() {
 	turn_card_anime();
 
 	let use_index;
@@ -126,6 +130,7 @@ function turn() {
 	}
 
 	OPERATION.innerHTML = '';
+	await Util.sleep(1000);
 
 	if (use_face_list[use_index]['use_count'] == 1) {
 		let button = document.createElement('button');
@@ -175,7 +180,7 @@ function turn_card_anime() {
 async function end_game() {
 	document.getElementById('GAME').style.display = 'none';
 	document.getElementById('RESULT').style.display = 'block';
-	await util.sleep(300);
+	await Util.sleep(300);
 	document.getElementById('RESULT').style.opacity = 1;
 
 	let order_by_scores = player_scores.sort(function (a, b) {
@@ -188,7 +193,7 @@ async function end_game() {
 
 	let players = document.getElementsByClassName('players');
 	for (let i = players.length - 1; i >= 0; i--) {
-		await util.sleep(1000);
+		await Util.sleep(1000);
 		players[i].style.opacity = 1;
 	}
 }

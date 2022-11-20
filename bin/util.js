@@ -1,23 +1,23 @@
-'use strict';
+class Util {
+	static VARSION = '1.0';
 
-export const VARSION = '1.0';
+	static get_storage(key) {
+		return JSON.parse(localStorage.getItem(key));
+	}
 
-export function getStorage(key) {
-	return JSON.parse(localStorage.getItem(key));
-}
+	static set_storage(key, json) {
+		localStorage.setItem(key, JSON.stringify(json));
+	}
 
-export function setStorage(key, json) {
-	localStorage.setItem(key, JSON.stringify(json));
-}
+	static remove_storage(key) {
+		localStorage.removeItem(key);
+	}
 
-export function removeStorage(key) {
-	localStorage.removeItem(key);
-}
-
-export function sleep(time) {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve();
-		}, time);
-	});
+	static sleep(time) {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve();
+			}, time);
+		});
+	}
 }
